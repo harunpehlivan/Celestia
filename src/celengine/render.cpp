@@ -6763,7 +6763,7 @@ void Renderer::renderPointStars(const AstroDatabase& aDB,
     m_starProcStats.height = 0;
     m_starProcStats.nodes = 0;
     processVisibleStars(
-        aDB.getOctree(),
+        aDB.getStarOctree(),
         starRenderer,
         obsPos,
         observer.getOrientationf(),
@@ -7048,7 +7048,7 @@ void Renderer::renderDeepSkyObjects(const Universe&  universe,
     m_dsoProcStats.height = 0;
     m_dsoProcStats.nodes = 0;
     processVisibleDsos(
-        aDB->getOctree(),
+        aDB->getDsoOctree(),
         dsoRenderer,
         obsPos,
         observer.getOrientationf(),
