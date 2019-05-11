@@ -42,12 +42,12 @@ set(CELENGINE_SOURCES
   dispmap.h
   dsodataloader.h
   dsodataloader.cpp
-  dsodb.cpp
-  dsodb.h
-  dsoname.cpp
-  dsoname.h
-  dsooctree.cpp
-  dsooctree.h
+#  dsodb.cpp
+#  dsodb.h
+#  dsoname.cpp
+#  dsoname.h
+#  dsooctree.cpp
+#  dsooctree.h
   execenv.h
   execution.cpp
   execution.h
@@ -90,7 +90,7 @@ set(CELENGINE_SOURCES
   nebula.h
   observer.cpp
   observer.h
-  octree.h
+#  octree.h
   opencluster.cpp
   opencluster.h
   overlay.cpp
@@ -137,12 +137,12 @@ set(CELENGINE_SOURCES
   star.h
   stardataloader.h
   stardataloader.cpp
-  stardb.cpp
-  stardb.h
-  starname.cpp
-  starname.h
-  staroctree.cpp
-  staroctree.h
+#  stardb.cpp
+#  stardb.h
+#  starname.cpp
+#  starname.h
+#  staroctree.cpp
+#  staroctree.h
   stellarclass.cpp
   stellarclass.h
   surface.h
