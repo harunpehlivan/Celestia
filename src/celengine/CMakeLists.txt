@@ -18,8 +18,8 @@ set(CELENGINE_SOURCES
   body.h
   boundaries.cpp
   boundaries.h
-  catalogxref.cpp
-  catalogxref.h
+#  catalogxref.cpp
+#  catalogxref.h
   category.cpp
   category.h
   celestia.h
@@ -84,8 +84,8 @@ set(CELENGINE_SOURCES
   modelgeometry.h
   multitexture.cpp
   multitexture.h
-  name.cpp
-  name.h
+  namedb.cpp
+  namedb.h
   namedataloader.h
   namedataloader.cpp
   nebula.cpp
