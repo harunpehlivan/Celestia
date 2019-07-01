@@ -64,7 +64,6 @@ void AstroObject::addNames(const string &names, bool updateDB) // string contain
     }
 }
 
-
 bool AstroObject::removeName(const Name& name, bool updateDB)
 {
     if (!m_db)

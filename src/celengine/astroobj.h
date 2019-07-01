@@ -40,7 +40,7 @@ public:
     bool hasName() const { return !m_primaryName.getCanon().empty(); }
     bool hasLocalizedName(const Name& name) const;
     bool hasLocalizedName(const std::string& name) const;
-    bool hasLocalizedName() { return m_primaryName.getCanon() != m_primaryName.getLocalized(); }
+    bool hasLocalizedName() { return m_primaryName.hasLocalized(); }
     NameInfoSet& getNameInfos() { return m_nameInfos; }
     bool removeName(const std::string&, bool = true);
     bool removeName(const Name&, bool = true);

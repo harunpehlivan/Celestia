@@ -21,11 +21,11 @@ Name & Name::operator=(const Name &n)
 
 const Name& NameInfo::getLocalized()
 {
-    if (m_localized.null())
+    if (m_localized.null() && !m_canonical.null())
     {
         const char *s = m_canonical.str().c_str();
         const char *l = m_domain.null() ? gettext(s) : dgettext(s, m_domain.str().c_str());
-        if (s == l) // gettext was unable to find translation
+        if (s == l || *l == '\0') // gettext was unable to find translation
         {
             m_localized = m_canonical;
         }
