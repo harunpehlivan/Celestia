@@ -202,7 +202,7 @@ class ClosestStarFinder : public StarProcesor
 public:
     ClosestStarFinder(double _maxDistance, const Universe* _universe);
     ~ClosestStarFinder() = default;
-    virtual void process(const Star *star, double distance, float appMag) override;
+    virtual void process(Star *star, double distance, float appMag) override;
 
 public:
     double maxDistance;
@@ -222,7 +222,7 @@ ClosestStarFinder::ClosestStarFinder(double _maxDistance,
 {
 }
 
-void ClosestStarFinder::process(const Star *star, double distance, float /*unused*/)
+void ClosestStarFinder::process(Star *star, double distance, float /*unused*/)
 {
     if (distance < closestDistance)
     {
@@ -240,7 +240,7 @@ class NearStarFinder : public StarProcesor
 public:
     NearStarFinder(double _maxDistance, vector<const Star*>& nearStars);
     ~NearStarFinder() = default;
-    virtual void process(const Star *star, double distance, float appMag) override;
+    virtual void process(Star *star, double distance, float appMag) override;
 
 private:
     double maxDistance;
@@ -254,7 +254,7 @@ NearStarFinder::NearStarFinder(double _maxDistance,
 {
 }
 
-void NearStarFinder::process(const Star *star, double distance, float /*unused*/)
+void NearStarFinder::process(Star *star, double distance, float /*unused*/)
 {
     if (distance < maxDistance)
         nearStars.push_back(star);
@@ -494,7 +494,7 @@ public:
     StarPicker(const Vector3d&, const Vector3d&, double, float);
     ~StarPicker() = default;
 
-    void virtual process(const Star* /*star*/, double /*unused*/, float /*unused*/) override;
+    void virtual process(Star* /*star*/, double /*unused*/, float /*unused*/) override;
 
 public:
     const Star* pickedStar;
@@ -516,7 +516,7 @@ StarPicker::StarPicker(const Vector3d& _pickOrigin,
 {
 }
 
-void StarPicker::process(const Star *star, double /*unused*/, float /*unused*/)
+void StarPicker::process(Star *star, double /*unused*/, float /*unused*/)
 {
     Vector3d relativeStarPos = star->getPosition().cast<double>() - pickOrigin;
     Vector3d starDir = relativeStarPos.normalized();
@@ -565,7 +565,7 @@ public:
                     double _maxDistance,
                     float angle);
     ~CloseStarPicker() = default;
-    virtual void process(const Star *star, double lowPrecDistance, float appMag) override;
+    virtual void process(Star *star, double lowPrecDistance, float appMag) override;
 
 public:
     UniversalCoord pickOrigin;
@@ -593,7 +593,7 @@ CloseStarPicker::CloseStarPicker(const UniversalCoord& pos,
 {
 }
 
-void CloseStarPicker::process(const Star *star,
+void CloseStarPicker::process(Star *star,
                               double highPrecDistance,
                               float /*unused*/)
 {
@@ -686,7 +686,7 @@ public:
     DSOPicker(const Vector3d& pickOrigin, const Vector3d& pickDir, uint64_t renderFlags, float angle);
     ~DSOPicker() = default;
 
-    virtual void process(const DeepSkyObject*, double, float) override;
+    virtual void process(DeepSkyObject*, double, float) override;
 
 public:
     Vector3d pickOrigin;
@@ -711,7 +711,7 @@ DSOPicker::DSOPicker(const Vector3d& pickOrigin,
 }
 
 
-void DSOPicker::process(const DeepSkyObject* dso, double /*unused*/, float /*unused*/)
+void DSOPicker::process(DeepSkyObject* dso, double /*unused*/, float /*unused*/)
 {
     if (!(dso->getRenderMask() & renderFlags) || !dso->isVisible() || !dso->isClickable())
         return;
@@ -749,7 +749,7 @@ public:
                    float);
     ~CloseDSOPicker() = default;
 
-    virtual void process(const DeepSkyObject* dso, double distance, float appMag) override;
+    virtual void process(DeepSkyObject* dso, double distance, float appMag) override;
 
 public:
     Vector3d  pickOrigin;
@@ -777,7 +777,7 @@ CloseDSOPicker::CloseDSOPicker(const Vector3d& pos,
 }
 
 
-void CloseDSOPicker::process(const DeepSkyObject* dso,
+void CloseDSOPicker::process(DeepSkyObject* dso,
                              double distance,
                              float /*unused*/)
 {

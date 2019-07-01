@@ -6463,7 +6463,7 @@ class PointStarRenderer : public StarProcesor, public ObjectRenderer
  public:
     PointStarRenderer();
 
-    virtual void process(const Star *star, double distance, float appMag) override;
+    virtual void process(Star *star, double distance, float appMag) override;
 
  public:
     Vector3d obsPos;
@@ -6500,7 +6500,7 @@ PointStarRenderer::PointStarRenderer() :
 }
 
 
-void PointStarRenderer::process(const Star *star, double distance, float appMag)
+void PointStarRenderer::process(Star *star, double distance, float appMag)
 {
     nProcessed++;
 
@@ -6580,7 +6580,7 @@ void PointStarRenderer::process(const Star *star, double distance, float appMag)
                 float distr = 3.5f * (labelThresholdMag - appMag)/labelThresholdMag;
                 if (distr > 1.0f)
                     distr = 1.0f;
-                renderer->addBackgroundAnnotation(nullptr, aDB->getObjectName(star, true),
+                renderer->addBackgroundAnnotation(nullptr, star->getLocalizedName(),
                                                   Color(Renderer::StarLabelColor, distr * Renderer::StarLabelColor.alpha()),
                                                   relPos);
                 nLabelled++;
@@ -6792,7 +6792,7 @@ class DSORenderer : public ObjectRenderer, public DsoProcesor
  public:
     DSORenderer();
 
-    virtual void process(const DeepSkyObject*, double, float) override;
+    virtual void process(DeepSkyObject*, double, float) override;
 
  public:
     Vector3d     obsPos;
@@ -6816,7 +6816,7 @@ DSORenderer::DSORenderer() :
 };
 
 
-void DSORenderer::process(const DeepSkyObject* dso,
+void DSORenderer::process(DeepSkyObject* dso,
                           double distanceToDSO,
                           float  absMag)
 {
@@ -6977,7 +6977,7 @@ void DSORenderer::process(const DeepSkyObject* dso,
                         distr = 1.0f;
 
                     renderer->addBackgroundAnnotation(rep,
-                                                      aDB->getObjectName(dso, true),
+                                                      dso->getLocalizedName(),
                                                       Color(labelColor, distr * labelColor.alpha()),
                                                       relPos,
                                                       Renderer::AlignLeft, Renderer::VerticalAlignCenter, symbolSize);

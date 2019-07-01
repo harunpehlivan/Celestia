@@ -59,8 +59,8 @@ class ObjectProcesor
     virtual void process(T, double distance, float appMag) = 0;
 };
 
-typedef ObjectProcesor<const Star*> StarProcesor;
-typedef ObjectProcesor<const DeepSkyObject*> DsoProcesor;
+typedef ObjectProcesor<Star*> StarProcesor;
+typedef ObjectProcesor<DeepSkyObject*> DsoProcesor;
 
 void create5FrustumPlanes(celmath::Frustum::PlaneType *, const Eigen::Vector3d &, const Eigen::Quaternionf &, float, float);
 
