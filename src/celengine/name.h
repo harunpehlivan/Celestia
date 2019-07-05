@@ -111,7 +111,7 @@ class NameInfo
         return m_canonical.ptr() != getLocalized().ptr();
     }
     const Name& getCanon() const { return m_canonical; }
-    const Name& getLocalized();
+    const Name& getLocalized() const;
     const Name& getLocalizedDirect() const { return m_localized; }
     const AstroObject *getObject() const { return m_object; }
     AstroObject* getObject() { return m_object; }
