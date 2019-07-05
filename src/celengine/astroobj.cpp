@@ -112,7 +112,7 @@ NameInfoSet::iterator AstroObject::getNameInfoIterator(const Name &name) const
     return it;
 }
 
-NameInfo* AstroObject::getNameInfo(const Name &name)
+const NameInfo* AstroObject::getNameInfo(const Name &name) const
 {
     if (!m_db)
     {
