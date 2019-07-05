@@ -400,7 +400,7 @@ Timeline* CreateTimelineFromArray(Body* body,
         Hash* phaseData = (*iter)->getHash();
         if (phaseData == nullptr)
         {
-            clog << "Error in timeline of '" << body->getName() << "': phase " << iter - timelineArray->begin() + 1 << " is not a property group.\n";
+            clog << "Error in timeline of '" << body->getName().str() << "': phase " << iter - timelineArray->begin() + 1 << " is not a property group.\n";
             delete timeline;
             return nullptr;
         }
@@ -415,7 +415,7 @@ Timeline* CreateTimelineFromArray(Body* body,
                                                    isFirstPhase, isLastPhase, previousEnding);
         if (phase == nullptr)
         {
-            clog << "Error in timeline of '" << body->getName() << "', phase " << iter - timelineArray->begin() + 1 << endl;
+            clog << "Error in timeline of '" << body->getName().str() << "', phase " << iter - timelineArray->begin() + 1 << endl;
             delete timeline;
             return nullptr;
         }
@@ -582,7 +582,7 @@ static bool CreateTimeline(Body* body,
         }
         else
         {
-            clog << "No valid orbit specified for object '" << body->getName() << "'. Skipping.\n";
+            clog << "No valid orbit specified for object '" << body->getName().str() << "'. Skipping.\n";
             delete defaultOrbitFrame;
             return false;
         }
@@ -668,13 +668,13 @@ static bool CreateTimeline(Body* body,
         // multiphase timelines.
         if (newOrbitFrame && isFrameCircular(*body->getOrbitFrame(0.0), ReferenceFrame::PositionFrame))
         {
-            clog << "Orbit frame for " << body->getName() << " is nested too deep (probably circular)\n";
+            clog << "Orbit frame for " << body->getName().str() << " is nested too deep (probably circular)\n";
             return false;
         }
 
         if (newBodyFrame && isFrameCircular(*body->getBodyFrame(0.0), ReferenceFrame::OrientationFrame))
         {
-            clog << "Body frame for " << body->getName() << " is nested too deep (probably circular)\n";
+            clog << "Body frame for " << body->getName().str() << " is nested too deep (probably circular)\n";
             return false;
         }
     }
