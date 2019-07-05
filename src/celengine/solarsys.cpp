@@ -1289,7 +1289,7 @@ bool LoadSolarSystemObjects(istream& in,
                 location->loadCategories(objectData, disposition, directory);
                 if (location != nullptr)
                 {
-                    location->setName(primaryName);
+                    location->addName(primaryName);
                     parent.body()->addLocation(location);
                 }
                 else
