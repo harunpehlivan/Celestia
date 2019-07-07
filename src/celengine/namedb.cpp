@@ -35,17 +35,19 @@ void NameDatabase::erase(const Name& name)
     m_nameIndex.erase(name);
 }
 
-NameInfo *NameDatabase::getNameInfo(const Name& name, bool greek) const
+NameInfo *NameDatabase::getNameInfo(const Name& name, bool greek, bool i18n) const
 {
-    NameMap::const_iterator iter = m_nameIndex.find(name);
+    const NameMap &map = /*i18n ? m_localizedIndex :*/ m_nameIndex;
 
-    if (iter != m_nameIndex.end())
+    NameMap::const_iterator iter = map.find(name);
+
+    if (iter != map.end())
         iter->second;
     if (greek)
     {
         string fname = ReplaceGreekLetterAbbr(name.str());
-        iter = m_nameIndex.find(fname);
-        if (iter != m_nameIndex.end())
+        iter = map.find(fname);
+        if (iter != map.end())
             return (NameInfo*)&iter->second;
     }
     return nullptr;

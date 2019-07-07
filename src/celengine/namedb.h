@@ -34,7 +34,7 @@ class NameDatabase
     // delete all names associated with the specified catalog number
     void erase(const Name&);
 
-    NameInfo *getNameInfo(const Name&, bool = true) const;
+    NameInfo *getNameInfo(const Name&, bool = true, bool = false) const;
     AstroObject *getObjectByName(const Name&, bool = true) const;
     AstroObject *getObjectByLocalizedName(const Name&, bool = true) const;
     AstroObject *findObjectByName(const Name&, bool = true) const;
