@@ -12,11 +12,17 @@ uint32_t NameDatabase::getNameCount() const
 
 bool NameDatabase::add(NameInfo &info, bool overwrite)
 {
-    if (!overwrite && (info.getCanon().empty() || m_nameIndex.find(info.getCanon()) != m_nameIndex.end()))
+    if (info.getCanon().empty() || (!overwrite && m_nameIndex.find(info.getCanon()) != m_nameIndex.end()))
         return false;
     m_nameIndex[info.getCanon()] = info;
-//     if (info.hasLocalized())
-//         m_localizedIndex[info.getLocalized()] = info;
+    return true;
+}
+
+bool NameDatabase::addLocalized(NameInfo &info, bool overwrite)
+{
+    if (!info.hasLocalized() || (!overwrite && m_localizedIndex.find(info.getLocalized()) != m_localizedIndex.end()))
+        return false;
+    m_localizedIndex[info.getLocalized()] = info;
     return true;
 }
 

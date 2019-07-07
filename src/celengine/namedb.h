@@ -29,6 +29,7 @@ class NameDatabase
     uint32_t getNameCount() const;
 
     bool add(NameInfo&, bool = true);
+    bool addLocalized(NameInfo&, bool = true);
 
     // delete all names associated with the specified catalog number
     void erase(const Name&);
