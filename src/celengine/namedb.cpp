@@ -10,7 +10,7 @@ uint32_t NameDatabase::getNameCount() const
     return m_nameIndex.size();
 }
 
-bool NameDatabase::add(NameInfo &info, bool overwrite)
+bool NameDatabase::add(const NameInfo &info, bool overwrite)
 {
     if (info.getCanon().empty() || (!overwrite && m_nameIndex.find(info.getCanon()) != m_nameIndex.end()))
         return false;
@@ -18,7 +18,7 @@ bool NameDatabase::add(NameInfo &info, bool overwrite)
     return true;
 }
 
-bool NameDatabase::addLocalized(NameInfo &info, bool overwrite)
+bool NameDatabase::addLocalized(const NameInfo &info, bool overwrite)
 {
     if (!info.hasLocalized() || (!overwrite && m_localizedIndex.find(info.getLocalized()) != m_localizedIndex.end()))
         return false;
@@ -76,6 +76,13 @@ std::vector<Name> NameDatabase::getCompletion(const std::string& name, bool gree
     int name_length = UTF8Length(fname);
 
     for (NameMap::const_iterator iter = m_nameIndex.begin(); iter != m_nameIndex.end(); ++iter)
+    {
+        if (!UTF8StringCompare(iter->first.str(), fname, name_length, true))
+        {
+            completion.push_back(iter->first);
+        }
+    }
+    for (NameMap::const_iterator iter = m_localizedIndex.begin(); iter != m_localizedIndex.end(); ++iter)
     {
         if (!UTF8StringCompare(iter->first.str(), fname, name_length, true))
         {
