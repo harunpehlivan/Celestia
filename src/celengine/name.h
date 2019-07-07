@@ -106,7 +106,7 @@ class NameInfo
         m_domain = other.m_domain;
         m_object = other.m_object;
     }
-    bool hasLocalized()
+    bool hasLocalized() const
     {
         return m_canonical.ptr() != getLocalized().ptr();
     }

@@ -1,5 +1,7 @@
 
 #include <fmt/printf.h>
+#include "astroobj.h"
+#include "astrodb.h"
 #include "name.h"
 
 using namespace std;
@@ -31,7 +33,13 @@ const Name& NameInfo::getLocalized() const
             ((NameInfo*)this)->m_localized = m_canonical;
         }
         else
+        {
             ((NameInfo*)this)->m_localized = l;
+            if (m_object != nullptr && m_object->getAstroDatabase() != nullptr)
+            {
+                m_object->getAstroDatabase()->addLocalizedName(*this);
+            }
+        }
     }
     return m_localized;
 }
