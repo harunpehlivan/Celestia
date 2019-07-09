@@ -39,7 +39,7 @@ public:
     bool null() const { return !(bool) m_ptr; }
     size_t length() const { return null() ? 0 : m_ptr->length(); }
     const char *c_str() const { return str().c_str(); }
-    static const Name &getEmpty() { return m_empty; }
+    static const Name getEmpty() { return m_empty; }
 };
 
 bool inline operator==(const Name& n1, const Name& n2)

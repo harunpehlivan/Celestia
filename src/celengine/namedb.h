@@ -34,7 +34,7 @@ class NameDatabase
     // delete all names associated with the specified catalog number
     void erase(const Name&);
 
-    NameInfo *getNameInfo(const Name&, bool = true, bool = false) const;
+    const NameInfo *getNameInfo(const Name&, bool = true, bool = false) const;
     AstroObject *getObjectByName(const Name&, bool = true) const;
     AstroObject *getObjectByLocalizedName(const Name&, bool = true) const;
     AstroObject *findObjectByName(const Name&, bool = true) const;
@@ -42,6 +42,7 @@ class NameDatabase
     std::vector<Name> getCompletion(const std::string& name, bool greek = true) const;
     std::vector<Name> getCompletion(const std::vector<std::string> &list) const;
 
+    void dump() const;
  protected:
     NameMap m_nameIndex;
     NameMap m_localizedIndex;

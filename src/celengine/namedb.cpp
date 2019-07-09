@@ -35,30 +35,30 @@ void NameDatabase::erase(const Name& name)
     m_nameIndex.erase(name);
 }
 
-NameInfo *NameDatabase::getNameInfo(const Name& name, bool greek, bool i18n) const
+const NameInfo *NameDatabase::getNameInfo(const Name& name, bool greek, bool i18n) const
 {
-    const NameMap &map = /*i18n ? m_localizedIndex :*/ m_nameIndex;
+    const NameMap &map = i18n ? m_localizedIndex : m_nameIndex;
 
     NameMap::const_iterator iter = map.find(name);
 
     if (iter != map.end())
-        iter->second;
+        return &iter->second;
     if (greek)
     {
         string fname = ReplaceGreekLetterAbbr(name.str());
         iter = map.find(fname);
         if (iter != map.end())
-            return (NameInfo*)&iter->second;
+            return &iter->second;
     }
     return nullptr;
 }
 
 AstroObject *NameDatabase::getObjectByName(const Name& name, bool greek) const
 {
-    NameInfo *info = getNameInfo(name, greek);
+    const NameInfo *info = getNameInfo(name, greek);
     if (info == nullptr)
         return nullptr;
-    return info->getObject();
+    return (AstroObject*)info->getObject();
 }
 
 std::vector<Name> NameDatabase::getCompletion(const std::string& name, bool greek) const
@@ -182,4 +182,16 @@ AstroObject *NameDatabase::findObjectByName(const Name& name, bool greek) const
     }
 
     return ret;
+}
+
+void NameDatabase::dump() const
+{
+    fmt::fprintf(cout, "%i canonical names:\n", m_nameIndex.size());
+    for (const auto &pair : m_nameIndex)
+        fmt::fprintf(cout, "  %s", pair.first.str());
+    fmt::fprintf(cout, "\n");
+    fmt::fprintf(cout, "%i localized names:\n", m_localizedIndex.size());
+    for (const auto &pair : m_localizedIndex)
+        fmt::fprintf(cout, "  %s", pair.first.str());
+    fmt::fprintf(cout, "\n");
 }
