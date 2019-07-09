@@ -119,7 +119,7 @@ class AstroDatabase {
     bool addName(AstroCatalog::IndexNumber, const Name&);
     void addNames(AstroCatalog::IndexNumber, const std::string&);
 
-    NameInfo *getNameInfo(const Name& name) const { return m_nameIndex.getNameInfo(name); }
+    const NameInfo *getNameInfo(const Name& name) const { return m_nameIndex.getNameInfo(name); }
 
     void removeName(const Name& name) { m_nameIndex.erase(name); }
     void removeName(const NameInfo&);

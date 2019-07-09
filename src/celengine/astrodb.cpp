@@ -201,6 +201,7 @@ std::string AstroDatabase::getObjectNames(AstroCatalog::IndexNumber nr, int max)
         names += it.second->catalogNumberToName(inr);
         --max;
     }
+//     fmt::fprintf(cout, "AstroDatabase::getObjectNames(): %s\n", names);
     return names;
 }
 
