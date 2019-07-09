@@ -3605,7 +3605,7 @@ void CelestiaCore::renderOverlay()
                 {
                     lastSelection = sel;
                     selectionNames = sim->getUniverse()->getDatabase().getObjectNames(sel.star());
-                    // Skip displaying the English name if a localized version is present.
+                    /*// Skip displaying the English name if a localized version is present.
                     string starName = sim->getUniverse()->getDatabase().getObjectName(sel.star());
                     string locStarName = sim->getUniverse()->getDatabase().getObjectName(sel.star(), true);
                     if (sel.star()->getIndex() == 0 && selectionNames.find("Sun") != string::npos && (const char*) "Sun" != _("Sun"))
@@ -3618,7 +3618,7 @@ void CelestiaCore::renderOverlay()
                     {
                         string::size_type startPos = selectionNames.find(locStarName);
                         selectionNames = selectionNames.substr(startPos);
-                    }
+                    }*/
                 }
 
                 overlay->setFont(titleFont);

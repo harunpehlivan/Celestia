@@ -166,7 +166,7 @@ std::vector<Name> AstroDatabase::getObjectNameList(AstroCatalog::IndexNumber nr,
     return ret;
 }
 
-std::string AstroDatabase::getObjectNames(AstroCatalog::IndexNumber nr, int max) const
+std::string AstroDatabase::getObjectNames(AstroCatalog::IndexNumber nr, bool i18n, int max) const
 {
     string names;
     names.reserve(max); // optimize memory allocation
@@ -180,7 +180,7 @@ std::string AstroDatabase::getObjectNames(AstroCatalog::IndexNumber nr, int max)
         if (!names.empty())
             names += " / ";
 
-        names += name.getCanon().str();
+        names += i18n ? name.getLocalized().str() : name.getCanon().str();
         --max;
     }
 
